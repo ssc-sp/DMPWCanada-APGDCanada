@@ -45,6 +45,10 @@ for u in xluuidlst:
     if u not in matched:
         xlres.append(u)
 
+matched = list(set(matched))
+dictres = list(set(dictres))
+xlres = list(set(xlres))
+
 ##########################################
 # Association of UUIDs with question/desc/fieldnames
 
