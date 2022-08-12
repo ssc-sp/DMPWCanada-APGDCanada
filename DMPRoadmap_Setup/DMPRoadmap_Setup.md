@@ -51,3 +51,21 @@ cd [PATH_TO_REPO] && rails server -b 0.0.0.0
 6. Press Ctrl+O to save the crontab file and then Ctrl+X to exit.
 7. Run `chmod +x rails_server_start.sh` to make the shell file executable.
 8. [ ] Use the command `./rails_server_start.sh` to test and ensure the shell file runs properly. You should see the rails server start and be able to visit DMPRoadmap.
+
+## Making Text Updates
+Before adding or changing text on DMPRoadmap, ensure you do the following:
+1. Ensure you have a translation.io account (You can sign up using your GitHub account).
+2. If you're using an existing instance, make sure you've been added to the translation.io project for the instance. Otherwise, create a project on translation.io, follow instructions, and run `rake translation:init` from the terminal.
+    * Note: translation.io is free for open source projects. You provide the GitHub repo for your code for free use.
+
+To add or change text, follow these steps:
+1. Use the translation gem format to ensure text is formatted properly.
+    * For example, if you want to add `<p>This is my text</p>`, you would put `<%= sanitize _("<p>This is my text</p>") %>`
+    * The `<%= %>` tags are to use Rails, the `_()` surrounding your text are to indicate a translatable text.
+2. Run `rake translation:sync` in the terminal.
+3. Visit the project on translation.io. If your text has not yet been translated, you can use the "Untranslated" tag to find it.
+    * Example: If you added `<p>Your email address has been successfully confirmed</p>`, you might see the following. Some suggestions are provided to the right.
+![translation.io screenshot](./translationio_screenshot.png)
+4. Provide your translation or select a given one.
+5. Run `rake translation:sync` in the terminal.
+6. Your text should be updated on the French version of the app.
